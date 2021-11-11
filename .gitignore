@@ -1,0 +1,5 @@
+*.o
+calc_lexer.cpp
+calc_parser.cpp
+tokens.h
+calc

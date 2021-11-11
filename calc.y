@@ -27,7 +27,7 @@
 %token<string_t> TK_ID
 %token<float_t> FLOAT
 
-%type<expr_t> EXPR FACTOR TERM REL_EXPR
+%type<expr_t> EXPR FACTOR TERM
 %type<expr_list> EXPRLIST
 
 %%
