@@ -96,4 +96,15 @@ class NumExpr: public Expr{
         float evaluate();
 };
 
+class WhileStatement: public Statement{
+    public:
+        WhileStatement(Expr * expr, Statement * stmt){
+            this->expr = expr;
+            this->stmt = stmt;
+        }
+        Expr* expr;
+        Statement * stmt;
+        float evaluate();
+};
+
 #endif

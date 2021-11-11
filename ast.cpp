@@ -42,3 +42,11 @@ float Declaration::evaluate(){
     return 0;
 }
 
+float WhileStatement::evaluate(){
+    while (this->expr != 0)
+    {
+        this->stmt->evaluate();
+    }
+
+    return 0;
+}
