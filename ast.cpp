@@ -2,6 +2,8 @@
 #include <map>
 #include <iostream>
 
+map<string, float> globalVariables = {};
+
 float NumExpr::evaluate(){
     return this->number;
 }
@@ -29,3 +31,14 @@ float GTExpr::evaluate(){
 float LTExpr::evaluate(){
     return this->expr1->evaluate() < this->expr2->evaluate();
 }
+
+float Initializer::evaluate() {
+    return this->expression->evaluate();
+}
+
+float Declaration::evaluate(){
+    globalVariables[this->id] = this->val->evaluate();
+    printf("\nVariable %s declarada\n", this->id);
+    return 0;
+}
+

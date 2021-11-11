@@ -7,12 +7,39 @@
 
 using namespace std;
 
+class Statement{
+    public:
+        virtual float evaluate();
+};
+typedef list<Statement *> StatementList;
+
 class Expr {
     public:
         virtual float evaluate() = 0;
 };
-
 typedef list<Expr *> ExprList;
+typedef list<Expr *> InitializerElementList;
+
+class Declaration: public Expr{
+    public:
+        Declaration(string id, Expr * val){
+            this->id = id;
+            this->val = val;
+        }
+        string id;
+        Expr * val;
+        float evaluate();
+};
+typedef list<Expr *> DeclarationList;
+
+class Initializer: public Expr{
+    public:
+        Initializer(Expr * expressions){
+            this->expression = expression;
+        }
+        Expr * expression;
+        float evaluate();
+};
 
 class BinaryExpr: public Expr {
     public:
