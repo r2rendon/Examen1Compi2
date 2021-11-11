@@ -48,6 +48,18 @@ class DivExpr: public BinaryExpr{
         float evaluate();
 };
 
+class GTExpr: public BinaryExpr{
+    public:
+        GTExpr(Expr * expr1, Expr * expr2): BinaryExpr(expr1, expr2){}
+        float evaluate();
+};
+
+class LTExpr: public BinaryExpr{
+    public:
+        LTExpr(Expr * expr1, Expr * expr2): BinaryExpr(expr1, expr2){}
+        float evaluate();
+};
+
 class NumExpr: public Expr{
     public:
         NumExpr(float number){

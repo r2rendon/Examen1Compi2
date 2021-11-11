@@ -27,7 +27,7 @@
 %token<string_t> TK_ID
 %token<float_t> FLOAT
 
-%type<expr_t> EXPR FACTOR TERM
+%type<expr_t> EXPR FACTOR TERM REL
 %type<expr_list> EXPRLIST
 
 %%
@@ -41,8 +41,13 @@ START: EXPRLIST {
 }
     ;
 
-EXPRLIST: EXPR EOL { $$ = new ExprList; $$->push_back($1); }
-    | EXPRLIST EXPR EOL { $$ = $1; $$->push_back($2); }
+EXPRLIST: REL EOL { $$ = new ExprList; $$->push_back($1); }
+    | EXPRLIST REL EOL { $$ = $1; $$->push_back($2); }
+    ;
+
+REL: REL '>' EXPR { $$ = new GTExpr($1, $3); }
+    | REL '<' EXPR { $$ = new LTExpr($1, $3); }
+    | EXPR { $$ = $1; }
     ;
 
 EXPR: EXPR ADD FACTOR { $$ = new AddExpr($1, $3); }
